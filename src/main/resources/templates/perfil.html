@@ -10,8 +10,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <nav>
+                <a href="/portal">Página inicial</a>
+                <a href="/servicos">Serviços</a>
+                <a href="/contato">Contatos</a>
+                <a href="/perfil"/>Perfil</a>
+            </nav>
         <div>
-            <h2 th:text="${nome}">Nome do Usuário</h2>    
+            <h2>Nome do Usuário: <span th:text="${nome}"></span></h2>
+            <h3>Nome do Curso: <span th:text="${curso}"></span></h3>
+            <h3>Linguagem Favorita: <span th:text="${linguagemFavorita}"></span></h3>
         </div>
     </body>
 </html>

@@ -19,7 +19,7 @@ public class UsuarioController {
     public String perfil(Model model) {
         model.addAttribute("nome", "Matheus Martins");
         model.addAttribute("curso", "Técnico em Desenvolvimento de Sistemas");
-        model.addAttribute("linguagem", "Java");
+        model.addAttribute("linguagemFavorita", "Java");
         return "perfil";
     }
 }
