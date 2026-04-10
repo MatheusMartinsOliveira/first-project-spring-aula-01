@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author farma
  */
-public class funcionarioDAO {
+public class FuncionarioDAO {
     
     public List<FuncionarioBean> listarFuncionarios() {
         List<FuncionarioBean> lista = new ArrayList();
@@ -44,4 +44,48 @@ public class funcionarioDAO {
         }
         return lista;
     }
+    public int totalFuncionarios() {
+        int total = 0;
+        try {
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("select count(*) as total from funcionario");
+            rs = stmt.executeQuery();
+           
+            if(rs.next()) {
+                total = rs.getInt("total");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return total;
+    }
+    public List<FuncionarioBean> tecnologia() {
+        List<FuncionarioBean> listaFiltrada = new ArrayList();
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("select * from funcionario where departamento = 'Tecnologia'");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                FuncionarioBean funcionarioFiltrado = new FuncionarioBean();
+                funcionarioFiltrado.setId(rs.getInt("id"));
+                funcionarioFiltrado.setNome(rs.getString("nome"));
+                funcionarioFiltrado.setDepartamento(rs.getString("departamento"));
+                funcionarioFiltrado.setEmail(rs.getString("email"));
+                funcionarioFiltrado.setDataContratacao(rs.getDate("data_contratacao"));
+                
+                listaFiltrada.add(funcionarioFiltrado);
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listaFiltrada;
+    }
+    
 }
